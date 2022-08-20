@@ -1,8 +1,8 @@
-import { WorldIDWidget } from "@worldcoin/id";
 import { useContext } from "react";
 import { userContext } from "../../context/userContext";
 import { web3 } from "../../services/web3"
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const MagicLogin = () => {
     const {account, setAccount} = useContext(userContext)
@@ -10,7 +10,22 @@ const MagicLogin = () => {
 
 
     const checkWorldID = () => {
-        //api call to backend check if worldID hash exists in databse
+        // Make a request for a user with a given ID
+        axios.get(`/user?address=${account}`)
+        .then(function (response) {
+            console.log(response);
+            if(response.worldcoin_hash != ""){
+                return true;
+            }
+            else {
+                return false;
+            }
+        })
+        .catch(function (error) {
+        // handle error
+        console.log(error);
+        })
+
         return false;
     }
 
