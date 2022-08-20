@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { userContext } from "../../context/userContext";
 import { web3 } from "../../services/web3"
 
-const Login = () => {
+const MagicLogin = () => {
     const {account, setAccount, isLoggedIn, setIsLoggedIn} = useContext(userContext)
 
     const login = async () => {
@@ -27,4 +27,4 @@ const Login = () => {
 
 }
 
-export default Login; 
+export default MagicLogin; 

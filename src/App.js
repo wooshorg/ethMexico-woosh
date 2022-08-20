@@ -1,8 +1,9 @@
 import './App.css';
 import { useState } from "react";
 import { userContext } from './context/userContext';
-import Login from './components/auth/Login';
+import MagicLogin from './components/auth/MagicLogin';
 import Logout from './components/auth/Logout';
+import WorldId from './components/auth/WorldID';
 
 function App() {
   const [account, setAccount] = useState(null);
@@ -10,20 +11,10 @@ function App() {
   const value = { account, setAccount, isLoggedIn, setIsLoggedIn };
 
 
+
   return (
     <userContext.Provider value={value}>
     <div className="App">
-      <h2>Magic Connect</h2>
-        {!account && (
-          <>
-            <Login />
-          </>
-        )}
-        {account && (
-          <>
-            <Logout />
-          </>
-        )}
     </div> 
     </userContext.Provider>
   );
