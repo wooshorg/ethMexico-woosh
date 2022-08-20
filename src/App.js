@@ -1,25 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from "react";
+import { userContext } from './context/userContext';
+import Login from './components/auth/Login';
+import Logout from './components/auth/Logout';
 
 function App() {
+  const [account, setAccount] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const value = { account, setAccount, isLoggedIn, setIsLoggedIn };
+
+
   return (
+    <userContext.Provider value={value}>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <h2>Magic Connect</h2>
+        {!account && (
+          <>
+            <Login />
+          </>
+        )}
+        {account && (
+          <>
+            <Logout />
+          </>
+        )}
+    </div> 
+    </userContext.Provider>
   );
 }
 
+
 export default App;
+
+
+
