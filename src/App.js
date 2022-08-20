@@ -1,20 +1,25 @@
 import './App.css';
 import { useState } from "react";
 import { userContext } from './context/userContext';
-import MagicLogin from './components/auth/MagicLogin';
-import Logout from './components/auth/Logout';
-import WorldId from './components/auth/WorldID';
+import { Routes, Route} from "react-router-dom";
+import Landing from './components/views/Landing';
+import Home from "./components/views/Home";
+import Verify from './components/views/Verify';
+
 
 function App() {
   const [account, setAccount] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const value = { account, setAccount, isLoggedIn, setIsLoggedIn };
-
-
+  const [isVerified, setIsVerisVerified] = useState(false);
+  const value = { account, setAccount, isVerified, setIsVerisVerified }
 
   return (
     <userContext.Provider value={value}>
     <div className="App">
+      <Routes>
+        <Route path="/"element={<Landing/>}/>
+        <Route path="/home"element={<Home/>}/>
+        <Route path="/verify"element={<Verify/>}/>
+      </Routes>
     </div> 
     </userContext.Provider>
   );

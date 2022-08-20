@@ -1,26 +1,24 @@
 import { useContext } from "react";
 import { userContext } from "../../context/userContext";
 import { magic } from "../../services/magic";
+import { useNavigate } from "react-router-dom";
 
 const Logout = () => {
-    const {account, setAccount, isLoggedIn, setIsLoggedIn} = useContext(userContext)
+    const {account, setAccount} = useContext(userContext)
+    const navigate = useNavigate()
 
     const disconnect = async () => {
         await magic.connect.disconnect().catch((e) => {
             console.log(e);
         });
         setAccount(null);
-        setIsLoggedIn(false);
+        navigate(`/`)
     };
     return (
         <>
-            {account && (
-            <>
-                <button onClick={disconnect} className="button-row">
-                Disconnect
-                </button>
-            </>
-        )}
+            <button onClick={disconnect} className="button-row">
+            Disconnect
+            </button>
         </>
     )
 
