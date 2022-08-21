@@ -27,7 +27,7 @@ const ProfileOverview = () => {
           </div>
         </div>
         <div className="flex justify-center gap-6">
-          <Button style="outline" link="#">
+          <Button style="outline" link="/request">
             Request Money
           </Button>
           <Button link="/send">Send Money</Button>

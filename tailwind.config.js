@@ -21,7 +21,6 @@ module.exports = {
       sm: [
         //12px
         '0.75rem',
-
       ],
       base: [
         //16px
@@ -46,7 +45,6 @@ module.exports = {
       '3xl': [
         // 41px, 62px, 67px
         '3.875rem',
-
       ],
     },
     extend: {},
