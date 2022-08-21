@@ -5,28 +5,29 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const MagicLogin = () => {
-    const {account, setAccount} = useContext(userContext)
+    const {setAccount} = useContext(userContext)
     const navigate = useNavigate()
 
 
-    const checkWorldID = () => {
+    const checkWorldID = async (address) => {
         // Make a request for a user with a given ID
-        axios.get(`/user?address=${account}`)
-        .then(function (response) {
-            console.log(response);
-            if(response.worldcoin_hash != ""){
-                return true;
+        console.log('CheckworldId()', address)
+        axios.get(`https://woosh-backend.herokuapp.com/user/retrieve/${address}`)
+        .then(response =>  {
+            console.log("axios get", response);
+            if(response.data.worldcoin_hash !== undefined){
+                console.log("world coin hash: ", response.worldcoin_hash)
+                navigate("/home")
             }
-            else {
-                return false;
+            else{
+                navigate("/verify")
             }
         })
-        .catch(function (error) {
+        .catch(error => {
         // handle error
-        console.log(error);
+            console.log("This is an error", error);
+            navigate("/verify")
         })
-
-        return false;
     }
 
     const login = async () => {
@@ -34,13 +35,7 @@ const MagicLogin = () => {
         .getAccounts()
         .then((accounts) => {
             setAccount(accounts?.[0]);
-            let isVerfified = checkWorldID()
-            if(isVerfified){
-                navigate(`/home`)
-            }
-            else {
-                navigate(`/verify`)
-            }
+            checkWorldID(accounts?.[0])
         })
         .catch((error) => {
             console.log(error);
