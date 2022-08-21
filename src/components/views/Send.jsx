@@ -85,9 +85,6 @@ const Send = () => {
                 setStep(step + 1);
               } else {
                 setStep(step + 1);
-              } else {
-                setStep(step + 1);
-<<<<<<< HEAD
               }
             }}
           >
