@@ -12,7 +12,7 @@ export const onFilePicked = (event) => {
   window.my_thumbs = data
 }
 
-export const onUploadFile = async () => {
+export const uploadFile = async () => {
   let { cid, fileName, fileUrl } = await web3storage.default.storeWithProgress(window.filelist)
   let imageUrl = fileUrl;
   console.log(">> file cid: ", cid);
@@ -21,4 +21,6 @@ export const onUploadFile = async () => {
 
   window.my_thumbs = null
   window.filelist = null
+
+  return fileUrl;
 }
