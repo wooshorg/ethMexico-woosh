@@ -2,8 +2,11 @@ import Header from "../layout/Header";
 import Navbar from "../layout/Navbar";
 import ProfileOverview from "../home/ProfileOverview";
 import Transactions from "../home/Transactions";
+import React from "react";
 
 const Home = () => {
+
+
   return (
     <>
       <div className="container">

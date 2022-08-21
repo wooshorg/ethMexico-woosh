@@ -1,7 +1,30 @@
 import * as Switch from '@radix-ui/react-switch';
 import Button from '../global/Button';
+import {
+  getBalanceOf,
+} from "../../services/web3_methods";
+import { useContext, useEffect, useState } from "react";
+import React from "react";
+import { userContext } from "../../context/userContext";
+import { ethers } from 'ethers';
 
 const ProfileOverview = () => {
+    const { account, setBalance, balance} = useContext(userContext);
+
+
+
+  useEffect(() => {
+    getBalanceOf(account)
+      .then((balance) => {
+        let balance_f = ethers.utils.formatEther(balance)
+        console.log(typeof(balance_f))
+        setBalance(balance_f);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [balance]);
+
   return (
     <>
       <div className="flex flex-col gap-6 mt-6">
@@ -12,7 +35,7 @@ const ProfileOverview = () => {
           />
           <div className="flex flex-col items-center gap-2">
             <div className="flex items-center gap-2">
-              <span className="text-2xl font-regular">$1,424.23</span>
+              <span className="text-2xl font-regular">{balance}</span>
               <div className="flex justify-center  h-5 w-5 rounded-full border border-white">
                 <span className="text-primary leading-none mt-[-1px]">+</span>
               </div>

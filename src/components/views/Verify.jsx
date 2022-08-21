@@ -38,7 +38,7 @@ const Verify = () => {
       })
       .then((response) => {
         console.log(response);
-        if (response.data.status == 200) {
+        if (response.data.status === 200) {
           navigate("/home");
         }
       })
@@ -54,7 +54,8 @@ const Verify = () => {
     <>
       <h1>Looks your new here. Please verify your a hooman</h1>
       <WorldIDWidget
-        actionId="wid_e426f4eb3674f6f12211da20f12346c0" // obtain this from developer.worldcoin.org
+        actionId="wid_551556267397a77d577fe0935f282ae7"
+        // obtain this from developer.worldcoin.org
         signal={account}
         enableTelemetry
         onSuccess={(verificationResponse) =>
