@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./components/**/*.{js,ts,jsx,tsx}'],
+  content: ['./components/**/*.{js,ts,jsx,tsx}', './src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     borderRadius: {
       '100vw': '100vw',
@@ -10,7 +10,7 @@ module.exports = {
       dark: '#0A210F',
       black: '#051007',
       white: '#F7F0F0',
-      primary: '#6C5DD3',
+      primary: '#23CE6B',
       error: '#ef4444',
     },
     container: {

@@ -17,8 +17,7 @@ function App() {
     <userContext.Provider value={value}>
       <div className="App">
         <Routes>
-          <Transactions />
-
+          <Route path="/transactions" element={<Transactions />} />
           <Route path="/" element={<Landing />} />
           <Route path="/home" element={<Home />} />
           <Route path="/verify" element={<Verify />} />
