@@ -4,6 +4,7 @@ const Button = (props) => {
   const buttonStyles = {
     primary: 'bg-primary text-black border-primary border-2',
     outline: 'border-primary border-2',
+    disabled: 'bg-[#848484]',
   };
 
   return (

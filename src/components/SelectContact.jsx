@@ -1,7 +1,7 @@
 import Search from './Search';
 import ContactList from './ContactList';
 
-const SelectContact = () => {
+const SelectContact = (props) => {
   const topContacts = [
     {
       user: 'user1.lens',
@@ -23,9 +23,14 @@ const SelectContact = () => {
   return (
     <div>
       <div className="flex flex-col items-center mb-6">
-        <span>You're sending</span>
+        <span>{props.request ? `You’re requesting` : 'You’re sending'}</span>
         <span className="text-3xl font-normal">$50.00</span>
-        <span className="text-xl font-normal">Who are you sending to?</span>
+
+        <span className="text-xl font-normal">
+          {props.request
+            ? `Who are you requesting money from?`
+            : 'Who are you sending to?'}
+        </span>
       </div>
 
       <h2>Most used contacts</h2>
