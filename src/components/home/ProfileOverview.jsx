@@ -30,7 +30,7 @@ const ProfileOverview = () => {
           <Button style="outline" link="#">
             Request Money
           </Button>
-          <Button link="#">Send Money</Button>
+          <Button link="/send">Send Money</Button>
         </div>
       </div>
     </>
