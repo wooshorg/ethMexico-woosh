@@ -1,5 +1,5 @@
-import MagicLogin from '../auth/MagicLogin';
-import { userContext } from '../../context/userContext';
+import MagicLogin from "../auth/MagicLogin";
+import { userContext } from "../../context/userContext";
 
 const Landing = () => {
   const { account } = userContext;

@@ -8,7 +8,7 @@ const Logout = () => {
     const navigate = useNavigate()
 
     const disconnect = async () => {
-        await magic.connect.disconnect().catch((e) => {
+        await  magic.user.logout().catch((e) => {
             console.log(e);
         });
         setAccount(null);
