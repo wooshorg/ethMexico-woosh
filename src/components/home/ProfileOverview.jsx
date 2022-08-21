@@ -1,5 +1,7 @@
-import * as Switch from '@radix-ui/react-switch';
-import Button from '../global/Button';
+import * as Switch from "@radix-ui/react-switch";
+
+import Button from "../global/Button";
+import { enableYield } from "../../services/web3_methods";
 
 const ProfileOverview = () => {
   return (
@@ -7,6 +9,7 @@ const ProfileOverview = () => {
       <div className="flex flex-col gap-6 mt-6">
         <div className="flex flex-col items-center gap-2">
           <img
+            alt="profilepic"
             src="/assets/profile-pic-empty.png"
             className="drop-shadow-[0_1px_4px_rgba(0,0,0,0.2)]"
           />
@@ -20,9 +23,11 @@ const ProfileOverview = () => {
             <span>user.lens</span>
             <div className="flex items-center gap-2">
               <span>Activate 7% yield</span>
-              <Switch.Root className="w-8 h-4 bg-[#C4C4C4] rounded-100vw relative radix-state-checked:bg-primary">
-                <Switch.Thumb className="block w-4 h-4 rounded-full bg-white radix-state-checked:translate-x-4 radix-state-unchecked:translate-x-0 transition duration-200" />
-              </Switch.Root>
+              <div onClick={enableYield}>
+                <Switch.Root className="w-8 h-4 bg-[#C4C4C4] rounded-100vw relative radix-state-checked:bg-primary">
+                  <Switch.Thumb className="block w-4 h-4 rounded-full bg-white radix-state-checked:translate-x-4 radix-state-unchecked:translate-x-0 transition duration-200" />
+                </Switch.Root>
+              </div>
             </div>
           </div>
         </div>
