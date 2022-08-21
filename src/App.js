@@ -5,7 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import Landing from './components/views/Landing';
 import Home from './components/views/Home';
 import Verify from './components/views/Verify';
-import Transactions from './components/home/Transactions';
+import Send from './components/views/Send';
 import Profile from './components/profile';
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/home" element={<Home />} />
           <Route path="/verify" element={<Verify />} />
-          <Route path="/transactions" element={<Transactions />} />
+          <Route path="/send" element={<Send />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
       </div>
