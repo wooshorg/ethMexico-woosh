@@ -2,6 +2,7 @@ import Header from '../layout/Header';
 import Navbar from '../layout/Navbar';
 import ProfileOverview from '../home/ProfileOverview';
 import Transactions from '../home/Transactions';
+import Request from '../home/Request';
 const Home = () => {
   return (
     <>
@@ -10,6 +11,9 @@ const Home = () => {
           <img src="/assets/settings-icon.svg" alt="Settings" />
         </Header>
         <ProfileOverview />
+        <div className="my-6">
+          <Request />
+        </div>
         <div className="w-full h-[1px] bg-white/10 mt-8 mb-6" />
         <Transactions />
       </div>

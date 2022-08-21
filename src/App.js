@@ -8,6 +8,7 @@ import Verify from './components/views/Verify';
 import Send from './components/views/Send';
 import Profile from './components/profile';
 import Request from './components/views/Request';
+import PayRequest from './components/views/PayRequest';
 
 function App() {
   const [account, setAccount] = useState(null);
@@ -23,6 +24,7 @@ function App() {
           <Route path="/verify" element={<Verify />} />
           <Route path="/send" element={<Send />} />
           <Route path="/request" element={<Request />} />
+          <Route path="/pay-request" element={<PayRequest />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
       </div>

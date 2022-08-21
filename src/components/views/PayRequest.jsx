@@ -2,14 +2,11 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Header from '../layout/Header';
-import MoneyInput from '../payment/MoneyInput';
 import Button from '../global/Button';
-import TextLink from '../global/TextLink';
-import SelectContact from '../contacts/SelectContact';
 import ConfirmSend from '../payment/ConfirmSend';
 import Confirmation from '../Confirmation';
 
-const Send = () => {
+const PayRequest = () => {
   const [step, setStep] = useState(1);
   const navigate = useNavigate();
 
@@ -17,43 +14,28 @@ const Send = () => {
     <>
       <div className="container h-screen overflow-hidden flex flex-col justify-between pb-6">
         <Header noLogo>
-          <div>
-            <img
-              src="/assets/qr-scanner.svg"
-              className={step < 3 ? 'block' : 'hidden'}
-            />
-          </div>
+          <div></div>
           <div onClick={() => navigate('/home')}>
             <img src="/assets/close.svg" />
           </div>
         </Header>
-        {step <= 1 && <MoneyInput reqCredits />}
-        {step === 2 && <SelectContact />}
-        {step === 3 && <ConfirmSend />}
-        {step === 4 && <Confirmation />}
+        {step === 1 && <ConfirmSend />}
+        {step === 2 && <Confirmation />}
         <div
           className={`w-full flex ${
             step === 1 ? 'justify-end' : 'justify-between'
           } items-center`}
         >
-          <div
-            className={step === 1 || step === 4 ? 'hidden' : 'block'}
-            onClick={() => {
-              setStep(step - 1);
-            }}
-          >
-            <TextLink>Back</TextLink>
-          </div>
           {/*Next button*/}
           <div
-            className={step === 4 ? 'hidden' : 'block'}
+            className={step === 2 ? 'hidden' : 'block'}
             onClick={() => {
-              if (step !== 4) {
+              if (step !== 2) {
                 setStep(step + 1);
               }
             }}
           >
-            <Button size={step === 4 ? 'lg' : 'md'}>
+            <Button size={step === 2 ? 'lg' : 'md'}>
               <div className="flex gap-2 justify-center">
                 <span className="leading-none">
                   {step === 3 ? 'Send' : 'Next'}
@@ -72,14 +54,14 @@ const Send = () => {
             onClick={() => {
               navigate('/home');
             }}
-            className={`${step !== 4 ? 'hidden' : 'block'} w-full`}
+            className={`${step !== 2 ? 'hidden' : 'block'} w-full`}
           >
-            <Button size={step === 4 ? 'lg' : 'md'}>
+            <Button size={step === 2 ? 'lg' : 'md'}>
               <div className="flex gap-2 justify-center">
                 <span className="leading-none">Close</span>
                 <img
                   src="assets/arrow.svg"
-                  className={`${step === 4 ? 'hidden' : 'block'} ${
+                  className={`${step === 2 ? 'hidden' : 'block'} ${
                     step === 3 ? 'rotate-[-45deg]' : 'rotate-0'
                   } mt-1`}
                 />
@@ -92,4 +74,4 @@ const Send = () => {
   );
 };
 
-export default Send;
+export default PayRequest;
