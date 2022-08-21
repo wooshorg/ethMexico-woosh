@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from '../hooks/UseLocalStorage';
 
@@ -13,26 +13,29 @@ import { userContext } from "../../context/userContext";
 import {
   transferDAI,
 } from "../../services/web3_methods";
+import { ethers } from 'ethers';
 
 const Send = () => {
   const [step, setStep] = useState(1);
   const navigate = useNavigate();
-  const [amount, setAmount] = useLocalStorage("amount", 0)
-  const [recipient, setRecipient] = useLocalStorage("recipient", null)
-  const {account} = useContext(userContext)
+  const [amount, setAmount] = useLocalStorage("amount", "")
+  const [recipient, setRecipient] = useLocalStorage("recipient", "0x9B7c18a71a98acD2f1271e2D1fe63750A70bC52B")
+  const {account, balance, setBalance} = useContext(userContext)
+  useEffect(()=> {
+    console.log(account)
+
+  },[step])
 
   const executeTransaction = (event) => {
     event.preventDefault();
     console.log("sending");
-    console.log(amount, recipient, account);
-    transferDAI(recipient, amount, account)
-      .then((result) => {
-        console.log("TX amount: ", amount, "to: ", recipient);
-        console.log(result);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    console.log(amount, typeof(amount))
+    let big_amount = ethers.utils.parseEther(amount)
+    // console.log("big amount", big_amount, "recipient: ", recipient, "sender: ", account);
+    transferDAI(recipient, big_amount, account)
+    .on('receipt', function(a){
+      console.log(a)
+    });
   };
 
 
@@ -72,13 +75,14 @@ const Send = () => {
           {/*Next button*/}
           <div
             className={step === 4 ? 'hidden' : 'block'}
-            onClick={() => {
-              if (step !== 4) {
-                setStep(step + 1);
-              }
-              if (step ==4){
-                executeTransaction()
-              }
+            onClick={(e) => {
+            if (step === 3){
+                console.log("here")
+                executeTransaction(e)
+                setStep(step + 1)
+              } else {
+                  setStep(step + 1)
+                }
             }}
           >
             <Button 

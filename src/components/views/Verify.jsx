@@ -38,7 +38,7 @@ const Verify = () => {
       })
       .then((response) => {
         console.log(response);
-        if (response.data.status === 200) {
+        if (response.status === 200) {
           navigate("/home");
         }
       })

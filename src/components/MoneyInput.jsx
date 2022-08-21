@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 
 const MoneyInput = (props) => {
   const {setAmount} = props;
-  const keyInputs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, ' . ', '<'];
+  const keyInputs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '.', '<'];
   const [userAmount, setUserAmount] = useState("")
 
   useEffect(()=> {

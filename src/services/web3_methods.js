@@ -19,8 +19,8 @@ export const getBalanceOf = async (address) => {
 };
 
 // TODO: Setup Transfer Function for DAI (safeTransferFrom/transferFrom/transfer)
-export const transferDAI = async (to, amount) => {
-  await daiContract.methods.transfer(to, amount).call();
+export const transferDAI = async (to, amount,address) => {
+  return daiContract.methods.transfer(to, amount).send({from:address});
 };
 
 // Approve max amount of DAI to stakingContract
