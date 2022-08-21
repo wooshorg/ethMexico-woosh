@@ -6,11 +6,13 @@ import Home from "./components/views/Home";
 import Landing from "./components/views/Landing";
 import Transactions from "./components/transactions";
 import Verify from "./components/views/Verify";
-import { useState } from "react";
+import { useState} from "react";
 import { userContext } from "./context/userContext";
+import { useLocalStorage } from "./components/hooks/UseLocalStorage";
+
 
 function App() {
-  const [account, setAccount] = useState(null);
+  const [account, setAccount] = useLocalStorage("account", null)
   const [isVerified, setIsVerisVerified] = useState(false);
   const value = { account, setAccount, isVerified, setIsVerisVerified };
 

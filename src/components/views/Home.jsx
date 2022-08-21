@@ -10,7 +10,7 @@ const Home = () => {
 
   useEffect(() => {
     console.log("🚀 | useEffect | account", account);
-    getBalanceOf("0x9b7c18a71a98acd2f1271e2d1fe63750a70bc52b")
+    getBalanceOf(account)
       .then((balance) => {
         setBalance(balance);
       })
