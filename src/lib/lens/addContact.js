@@ -47,7 +47,7 @@ const createFollowTypedData = (followRequestInfo: any) => {
 };
 
 export const addContact = async (profileId) => {
-  const address = getAddressFromSigner();
+  const address = await getAddressFromSigner();
   console.log('follow: address', address);
 
   await login(address);
@@ -71,7 +71,7 @@ export const addContact = async (profileId) => {
   const { v, r, s } = splitSignature(signature);
 
   const tx = await lensHub.followWithSig({
-    follower: getAddressFromSigner(),
+    follower: await getAddressFromSigner(),
     profileIds: typedData.value.profileIds,
     datas: typedData.value.datas,
     sig: {

@@ -40,8 +40,8 @@ const Verify = () => {
       })
       .then((response) => {
         console.log(response);
-        if (response.data.status == 200) {
-          navigate('/create-profile');
+        if (response.status == 200) {
+          navigate("/create-profile");
         }
       })
       .catch((error) => {
@@ -67,7 +67,7 @@ const Verify = () => {
 
         <div className="flex flex-col items-center">
           <WorldIDWidget
-            actionId="wid_e426f4eb3674f6f12211da20f12346c0" // obtain this from developer.worldcoin.org
+            actionId="wid_9d71dcf5183103248143122fb068c246" // obtain this from developer.worldcoin.org
             signal={account}
             enableTelemetry
             onSuccess={(verificationResponse) =>

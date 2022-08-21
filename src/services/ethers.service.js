@@ -2,16 +2,17 @@ import { TypedDataDomain, TypedDataField } from '@ethersproject/abstract-signer'
 import { ethers, utils, Wallet } from 'ethers';
 import { MUMBAI_RPC_URL, PK } from '../config';
 import { omit } from '../lib/helpers';
+import { magic } from "./magic";
 
-export const ethersProvider = new ethers.providers.JsonRpcProvider(MUMBAI_RPC_URL);
+const provider = new ethers.providers.Web3Provider(magic.rpcProvider);
 
-// TODO: change this by web3 integration
 export const getSigner = () => {
-  return new Wallet(PK, ethersProvider);
+  return provider.getSigner();
 };
 
-export const getAddressFromSigner = () => {
-  return getSigner().address;
+export const getAddressFromSigner = async() => {
+  const address = await getSigner().getAddress();
+  return address;
 };
 
 export const signedTypeData = (

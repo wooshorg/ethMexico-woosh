@@ -90,7 +90,7 @@ const followingRequest = (walletAddress) => {
 
 export const getContacts = async (address) => {
   if (!address) {
-    address = getAddressFromSigner();
+    address = await getAddressFromSigner();
   }
   console.log('following: address', address);
 
