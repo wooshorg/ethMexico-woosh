@@ -1,5 +1,7 @@
 import { useContext, useEffect } from "react";
 
+import Header from "../layout/Header";
+import Navbar from "../layout/Navbar";
 import { WorldIDWidget } from "@worldcoin/id";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -52,16 +54,32 @@ const Verify = () => {
 
   return (
     <>
-      <h1>Looks your new here. Please verify your a hooman</h1>
-      <WorldIDWidget
-        actionId="wid_e426f4eb3674f6f12211da20f12346c0" // obtain this from developer.worldcoin.org
-        signal={account}
-        enableTelemetry
-        onSuccess={(verificationResponse) =>
-          completeVerification(verificationResponse)
-        } // you'll actually want to pass the proof to the API or your smart contract
-        onError={(error) => console.error(error)}
-      />
+      <div className="container">
+        <Header>
+          <img src="/assets/settings-icon.svg" alt="Settings" />
+        </Header>
+        <div className="flex flex-col gap-4">
+          <p className="text-3xl font-thin w-4/5">Verify that you're human</p>
+          <p className="text-base font-normal w-4/5">
+            To avoid spam and fake accounts we integrate with Worldcoin to
+            verify that you are a human being.
+          </p>
+        </div>
+        <WorldIDWidget
+          actionId="wid_e426f4eb3674f6f12211da20f12346c0" // obtain this from developer.worldcoin.org
+          signal={account}
+          enableTelemetry
+          onSuccess={(verificationResponse) =>
+            completeVerification(verificationResponse)
+          } // you'll actually want to pass the proof to the API or your smart contract
+          onError={(error) => console.error(error)}
+        />
+        <p className="text-sm font-normal text-center border-spacing-10">
+          I don't have a WorldCoin WorldID.
+        </p>
+        {/* <div className="w-full h-[1px] bg-white/10 mt-8 mb-6" /> */}
+      </div>
+      {/* <Navbar /> */}
     </>
   );
 };
