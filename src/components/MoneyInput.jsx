@@ -1,6 +1,6 @@
 import Button from './global/Button';
 
-const MoneyInput = () => {
+const MoneyInput = (props) => {
   const keyInputs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '.', '<'];
 
   return (
@@ -8,10 +8,16 @@ const MoneyInput = () => {
       <div className="flex flex-col items-center mt-12">
         <div className="flex flex-col items-center gap-6">
           <span className="text-3xl leading-none">$0</span>
-          <span>You have 5 credits left</span>
-          <Button size="sm">
-            <p className="leading-none">Refuel</p>
-          </Button>
+          <span>
+            {props.reqCredits
+              ? 'You have 5 credits left'
+              : `You don't require credits for this`}
+          </span>
+          {!props.noRefuel && (
+            <Button size="sm">
+              <p className="leading-none">Refuel</p>
+            </Button>
+          )}
         </div>
 
         <div className="grid grid-cols-3 gap-x-[5rem] gap-y-[2.5rem] mt-16 w-full place-items-center">

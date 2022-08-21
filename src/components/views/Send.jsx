@@ -27,7 +27,7 @@ const Send = () => {
             <img src="/assets/close.svg" />
           </div>
         </Header>
-        {step <= 1 && <MoneyPad />}
+        {step <= 1 && <MoneyPad reqCredits />}
         {step === 2 && <SelectContact />}
         {step === 3 && <ConfirmSend />}
         {step === 4 && <Confirmation />}
