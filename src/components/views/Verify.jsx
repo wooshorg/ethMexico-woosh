@@ -58,7 +58,7 @@ const Verify = () => {
         <Header>
           <img src="/assets/settings-icon.svg" alt="Settings" />
         </Header>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col space-y-16">
           <p className="text-3xl font-thin w-4/5">Verify that you're human</p>
           <p className="text-base font-normal w-4/5">
             To avoid spam and fake accounts we integrate with Worldcoin to
