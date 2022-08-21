@@ -2,11 +2,10 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Header from '../layout/Header';
-import MoneyPad from '../MoneyInput';
+import MoneyInput from '../payment/MoneyInput';
 import Button from '../global/Button';
 import TextLink from '../global/TextLink';
-import SelectContact from '../SelectContact';
-import ConfirmSend from '../ConfirmSend';
+import SelectContact from '../contacts/SelectContact';
 import Confirmation from '../Confirmation';
 
 const Request = () => {
@@ -31,7 +30,7 @@ const Request = () => {
             <img src="/assets/close.svg" />
           </div>
         </Header>
-        {step <= 1 && <MoneyPad noRefuel />}
+        {step <= 1 && <MoneyInput noRefuel />}
         {step === 2 && <SelectContact request />}
         {step === 3 && <Confirmation request />}
         <div

@@ -1,4 +1,4 @@
-import Button from './global/Button';
+import Button from '../global/Button';
 import PinInput from './PinInput';
 
 const ConfirmSend = () => {

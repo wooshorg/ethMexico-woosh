@@ -14,6 +14,7 @@ import { userContext } from "./context/userContext";
 import Transactions from './components/home/Transactions';
 import Profile from './components/profile';
 import AddContact from './components/addContact';
+import PayRequest from './components/views/PayRequest';
 
 function App() {
   const [account, setAccount] = useLocalStorage("account", null);
@@ -29,6 +30,7 @@ function App() {
           <Route path="/verify" element={<Verify />} />
           <Route path="/send" element={<Send />} />
           <Route path="/request" element={<Request />} />
+          <Route path="/pay-request" element={<PayRequest />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/transactions" element={<Transactions />} />
           <Route path="/add-contact" element={<AddContact />} />
