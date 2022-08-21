@@ -6,28 +6,49 @@ import axios from 'axios';
 import Button from '../global/Button';
 
 const MagicLogin = () => {
-  const { account, setAccount } = useContext(userContext);
-  const navigate = useNavigate();
+    const {setAccount} = useContext(userContext)
+    const navigate = useNavigate()
 
-  const checkWorldID = () => {
-    // Make a request for a user with a given ID
-    axios
-      .get(`/user?address=${account}`)
-      .then(function (response) {
-        console.log(response);
-        if (response.worldcoin_hash != '') {
-          return true;
-        } else {
-          return false;
-        }
-      })
-      .catch(function (error) {
+    const checkWorldID = async (address) => {
+        // Make a request for a user with a given ID
+        console.log('CheckworldId()', address)
+        axios.get(`https://woosh-backend.herokuapp.com/user/retrieve/${address}`)
+        .then(response =>  {
+            console.log("axios get", response);
+            if(response.data.worldcoin_hash !== undefined){
+                console.log("world coin hash: ", response.worldcoin_hash)
+                navigate("/home")
+            }
+            else{
+                navigate("/verify")
+            }
+        })
+        .catch(error => {
         // handle error
-        console.log(error);
-      });
+            console.log("This is an error", error);
+            navigate("/verify")
+        })
+    }
 
-    return false;
-  };
+    const login = async () => {
+        web3.eth
+        .getAccounts()
+        .then((accounts) => {
+            setAccount(accounts?.[0]);
+            checkWorldID(accounts?.[0])
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    };
+    return (
+        <>
+            
+            <button onClick={login} className="button-row">
+                Enter Woosh
+            </button>
+        </>
+    )
 
   const login = async () => {
     web3.eth
