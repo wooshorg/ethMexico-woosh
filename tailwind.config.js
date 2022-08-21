@@ -25,22 +25,26 @@ module.exports = {
       base: [
         //16px
         '1rem',
+
       ],
       lg: [
         // 18px, 21px, 30px
-        'clamp(1.25rem, 1rem + 0.56vw, 1.875rem)',
+        '1.31rem',
+
       ],
       xl: [
         // 24px, 28px, 41px
-        'clamp(1.5rem, 1.17rem + 1vw, 2.56rem)',
+        '1.75rem',
+
       ],
       '2xl': [
         // 33px, 36px, 51px
-        'clamp(2.05rem, 1.5rem + 1.2vw, 3.18rem)',
+        '2.25rem',
+
       ],
       '3xl': [
         // 41px, 62px, 67px
-        'clamp(2.56rem, 1.58rem + 2vw, 4.18rem)',
+        '3.875rem',
       ],
     },
     extend: {},
