@@ -1,83 +1,85 @@
-import { useState, useEffect, useContext } from 'react';
-import { ethers } from 'ethers';
-import polygonscan from 'polygonscan-api';
+import { useContext, useEffect, useState } from "react";
 
-import { userContext } from '../../context/userContext';
-import TextLink from '../global/TextLink';
+import TextLink from "../global/TextLink";
+import { ethers } from "ethers";
+import polygonscan from "polygonscan-api";
+import { userContext } from "../../context/userContext";
 
 const Transactions = () => {
   const [transactions, setTransactions] = useState([]);
-  // const { account } = useContext(userContext);
+  const { account } = useContext(userContext);
 
-  // const loadTransactions = async () => {
-  //   if (account === null) {
-  //     return;
-  //   }
+  const loadTransactions = async () => {
+    // if (account === null) {
+    //   return;
+    // }
 
-  //   const myAddress = account; // TODO: get this from global stored data
-  //   const api = polygonscan.init(
-  //     process.env.POLYGONSCAN_API_KEY,
-  //     'mumbai',
-  //     '3000'
-  //   ); // TODO: get this from ENV
-  //   var txs = await api.account.tokentx(myAddress);
+    const myAddress = "0x41A6B19f3e9b0cB641965136aF8a774A85eA1FE2"; // TODO: get this from global stored data
+    const api = polygonscan.init(
+      process.env.POLYGONSCAN_API_KEY,
+      "mumbai",
+      "3000"
+    ); // TODO: get this from ENV
+    var txs = await api.account.tokentx(myAddress);
+    console.log("🚀 | loadTransactions | txs", txs);
 
-  //   let listTxs = [];
-  //   for (var i = 0; i < txs.result.length; i++) {
-  //     let tx = txs.result[i];
+    let listTxs = [];
+    for (var i = 0; i < txs.result.length; i++) {
+      let tx = txs.result[i];
 
-  //     let contactName = '';
-  //     let type = 'Out';
-  //     if (tx.from.toLowerCase() !== myAddress.toLowerCase()) {
-  //       type = 'In';
+      let contactName = "";
+      let type = "Out";
+      if (tx.from.toLowerCase() !== myAddress.toLowerCase()) {
+        type = "In";
 
-  //       // TODO: compare to contact addresses to get name
-  //       contactName = 'Pancho';
-  //     }
+        // TODO: compare to contact addresses to get name
+        contactName = "Pancho";
+      }
 
-  //     let data = {
-  //       time: new Date(parseInt(tx.timeStamp * 1000)).toLocaleString('en-US'),
-  //       amount: ethers.utils.formatUnits(tx.value, parseInt(tx.tokenDecimal)),
-  //       tokenSymbol: tx.tokenSymbol,
-  //       contactName: contactName,
-  //       type: type,
-  //     };
+      let data = {
+        user: "user.lens", // TODO: Resolve from lens
+        time: new Date(parseInt(tx.timeStamp * 1000)).toLocaleString("en-US"),
+        amount: ethers.utils.formatUnits(tx.value, parseInt(tx.tokenDecimal)),
+        tokenSymbol: tx.tokenSymbol,
+        contactName: contactName,
+        type: type,
+      };
 
-  //     listTxs.push(data);
-  //   }
-  //   setTransactions((t) => {
-  //     return listTxs;
-  //   });
-  // };
+      listTxs.push(data);
+    }
+    setTransactions((t) => {
+      return listTxs;
+    });
+  };
 
   useEffect(() => {
-    setTransactions([
-      {
-        user: 'user.lens',
-        amount: 100,
-        date: '12 / 12 / 2022',
-        type: 'in',
-      },
-      {
-        user: 'user.lens',
-        amount: 1000,
-        date: '12 / 12 / 2022',
-        type: 'out',
-      },
-      {
-        user: 'user.lens',
-        amount: 1000,
-        date: '12 / 12 / 2022',
-        type: 'in',
-      },
-      {
-        user: 'user.lens',
-        amount: 1000,
-        date: '12 / 12 / 2022',
-        type: 'in',
-      },
-    ]);
-    //loadTransactions();
+    // setTransactions([
+    //   {
+    //     user: "user.lens",
+    //     amount: 100,
+    //     date: "12 / 12 / 2022",
+    //     type: "in",
+    //   },
+    //   {
+    //     user: "user.lens",
+    //     amount: 1000,
+    //     date: "12 / 12 / 2022",
+    //     type: "out",
+    //   },
+    //   {
+    //     user: "user.lens",
+    //     amount: 1000,
+    //     date: "12 / 12 / 2022",
+    //     type: "in",
+    //   },
+    //   {
+    //     user: "user.lens",
+    //     amount: 1000,
+    //     date: "12 / 12 / 2022",
+    //     type: "in",
+    //   },
+    // ]);
+    loadTransactions();
   }, []);
 
   return (
@@ -97,7 +99,7 @@ const Transactions = () => {
                 </div>
                 <div className="flex flex-col items-end">
                   <span className="text-md">
-                    {e.type === 'in' ? '+' : '-'}${e.amount.toFixed(2)}
+                    {e.type === "in" ? "+" : "-"}${e.amount}
                   </span>
                 </div>
               </div>

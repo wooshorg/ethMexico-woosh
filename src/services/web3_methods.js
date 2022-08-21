@@ -35,12 +35,12 @@ export const approveDAI = async () => {
 
 // TODO: Setup Transfer Function for DAI (safeTransferFrom/transferFrom/transfer)
 export const enableYield = async () => {
-  await daiContract.methods.startloanDAI().call();
+  await stakingContract.methods.startloanDAI().call();
 };
 
 // TODO: Setup Transfer Function for DAI (safeTransferFrom/transferFrom/transfer)
 export const disableYield = async () => {
-  await daiContract.methods.stopLoanDAI().call();
+  await stakingContract.methods.stopLoanDAI().call();
 };
 
 const sendTransaction = async () => {
