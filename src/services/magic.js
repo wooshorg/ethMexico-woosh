@@ -1,6 +1,5 @@
 // import { ConnectExtension } from "@magic-ext/connect";
 
-import { MUMBAI_RPC_URL } from "../config";
 import { Magic } from "magic-sdk";
 
 const customNodeOptions = {

@@ -1,25 +1,25 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from "react";
 
-import Button from '../global/Button';
-import ConfirmSend from '../payment/ConfirmSend';
-import Confirmation from '../Confirmation';
-import Header from '../layout/Header';
-import MoneyInput from '../payment/MoneyInput';
-import SelectContact from '../contacts/SelectContact';
-import TextLink from '../global/TextLink';
-import { ethers } from 'ethers';
-import { transferDAI } from '../../services/web3_methods';
-import { useLocalStorage } from '../hooks/UseLocalStorage';
-import { useNavigate } from 'react-router-dom';
-import { userContext } from '../../context/userContext';
+import Button from "../global/Button";
+import ConfirmSend from "../payment/ConfirmSend";
+import Confirmation from "../Confirmation";
+import Header from "../layout/Header";
+import MoneyInput from "../payment/MoneyInput";
+import SelectContact from "../contacts/SelectContact";
+import TextLink from "../global/TextLink";
+import { ethers } from "ethers";
+import { transferDAI } from "../../services/web3_methods";
+import { useLocalStorage } from "../hooks/UseLocalStorage";
+import { useNavigate } from "react-router-dom";
+import { userContext } from "../../context/userContext";
 
 const Send = () => {
   const [step, setStep] = useState(1);
   const navigate = useNavigate();
-  const [amount, setAmount] = useLocalStorage('amount', '');
+  const [amount, setAmount] = useLocalStorage("amount", "");
   const [recipient, setRecipient] = useLocalStorage(
-    'recipient',
-    '0x9B7c18a71a98acD2f1271e2D1fe63750A70bC52B'
+    "recipient",
+    "0x9B7c18a71a98acD2f1271e2D1fe63750A70bC52B"
   );
   const { account, balance, setBalance } = useContext(userContext);
   useEffect(() => {
@@ -28,11 +28,11 @@ const Send = () => {
 
   const executeTransaction = (event) => {
     event.preventDefault();
-    console.log('sending');
+    console.log("sending");
     console.log(amount, recipient, account);
     transferDAI(recipient, amount, account)
       .then((result) => {
-        console.log('TX amount: ', amount, 'to: ', recipient);
+        console.log("TX amount: ", amount, "to: ", recipient);
         console.log(result);
       })
       .catch((error) => {
@@ -47,10 +47,10 @@ const Send = () => {
           <div>
             <img
               src="/assets/qr-scanner.svg"
-              className={step < 3 ? 'block' : 'hidden'}
+              className={step < 3 ? "block" : "hidden"}
             />
           </div>
-          <div onClick={() => navigate('/home')}>
+          <div onClick={() => navigate("/home")}>
             <img src="/assets/close.svg" />
           </div>
         </Header>
@@ -64,11 +64,11 @@ const Send = () => {
 
         <div
           className={`w-full flex ${
-            step === 1 ? 'justify-end' : 'justify-between'
+            step === 1 ? "justify-end" : "justify-between"
           } items-center`}
         >
           <div
-            className={step === 1 || step === 4 ? 'hidden' : 'block'}
+            className={step === 1 || step === 4 ? "hidden" : "block"}
             onClick={() => {
               setStep(step - 1);
             }}
@@ -77,10 +77,10 @@ const Send = () => {
           </div>
           {/*Next button*/}
           <div
-            className={step === 4 ? 'hidden' : 'block'}
+            className={step === 4 ? "hidden" : "block"}
             onClick={(e) => {
               if (step === 3) {
-                console.log('here');
+                console.log("here");
                 executeTransaction(e);
                 setStep(step + 1);
               } else {
@@ -88,15 +88,15 @@ const Send = () => {
               }
             }}
           >
-            <Button size={step === 4 ? 'lg' : 'md'}>
+            <Button size={step === 4 ? "lg" : "md"}>
               <div className="flex gap-2 justify-center">
                 <span className="leading-none">
-                  {step === 3 ? 'Send' : 'Next'}
+                  {step === 3 ? "Send" : "Next"}
                 </span>
                 <img
                   src="assets/arrow.svg"
-                  className={`${step === 4 ? 'hidden' : 'block'} ${
-                    step === 3 ? 'rotate-[-45deg]' : 'rotate-0'
+                  className={`${step === 4 ? "hidden" : "block"} ${
+                    step === 3 ? "rotate-[-45deg]" : "rotate-0"
                   } mt-1`}
                 />
               </div>
@@ -105,17 +105,17 @@ const Send = () => {
           {/*Confirm button*/}
           <div
             onClick={() => {
-              navigate('/home');
+              navigate("/home");
             }}
-            className={`${step !== 4 ? 'hidden' : 'block'} w-full`}
+            className={`${step !== 4 ? "hidden" : "block"} w-full`}
           >
-            <Button size={step === 4 ? 'lg' : 'md'}>
+            <Button size={step === 4 ? "lg" : "md"}>
               <div className="flex gap-2 justify-center">
                 <span className="leading-none">Close</span>
                 <img
                   src="assets/arrow.svg"
-                  className={`${step === 4 ? 'hidden' : 'block'} ${
-                    step === 3 ? 'rotate-[-45deg]' : 'rotate-0'
+                  className={`${step === 4 ? "hidden" : "block"} ${
+                    step === 3 ? "rotate-[-45deg]" : "rotate-0"
                   } mt-1`}
                 />
               </div>
