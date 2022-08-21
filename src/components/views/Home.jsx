@@ -1,9 +1,9 @@
-import Header from "../layout/Header";
-import Navbar from "../layout/Navbar";
-import ProfileOverview from "../home/ProfileOverview";
-import Transactions from "../home/Transactions";
+import Header from '../layout/Header';
+import Navbar from '../layout/Navbar';
+import ProfileOverview from '../home/ProfileOverview';
+import Transactions from '../home/Transactions';
 
-import Request from '../home/Request';
+import Receive from '../home/Receive';
 const Home = () => {
   return (
     <>
@@ -13,7 +13,7 @@ const Home = () => {
         </Header>
         <ProfileOverview />
         <div className="my-6">
-          <Request />
+          <Receive />
         </div>
         <div className="w-full h-[1px] bg-white/10 mt-8 mb-6" />
         <Transactions />

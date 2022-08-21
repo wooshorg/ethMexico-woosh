@@ -1,4 +1,5 @@
 import Button from '../global/Button';
+import MessagePopup from '../MessagePopup';
 import PinInput from './PinInput';
 
 const ConfirmSend = () => {
@@ -11,9 +12,7 @@ const ConfirmSend = () => {
           <span>To: temo.lens</span>
           <span className="text-white/70">Cost: 1 credit</span>
         </div>
-        <Button size="sm">
-          <p className="leading-none">+ Add a message</p>
-        </Button>
+        <MessagePopup />
       </div>
       <PinInput />
     </div>

@@ -9,6 +9,7 @@
     "@emotion/styled": "^11.10.0",
     "@ethersproject/solidity": "^5.7.0",
     "@magic-ext/connect": "^2.0.2",
+    "@radix-ui/react-dialog": "^1.0.0",
     "@radix-ui/react-switch": "^1.0.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
