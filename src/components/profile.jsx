@@ -1,12 +1,12 @@
 import { useState, useEffect, useContext } from "react";
 import { userContext } from "../context/userContext";
-import { createProfile } from "../lib/lens/createProfile"
+import { createProfile } from "../lib/lens/createProfile";
 import { onFilePicked, uploadFile } from '../lib/fileManager';
 
 const Profile = () => {
   const [handle, setHandle] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
-  const {account} = useContext(userContext);
+  const { account } = useContext(userContext);
 
   const createLensProfile = async () => {
     if(handle === null) {
