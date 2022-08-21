@@ -4,21 +4,43 @@ import { web3 } from "./web3";
 
 // TODO: Get DAI ABI, DAI ADDRESS
 const daiABI = require("./DAI.json")["abi"];
-console.log("🚀 | daiABI", daiABI);
 const daiAddress = require("./DAI.json")["address"];
-console.log("🚀 | daiAddress", daiAddress);
-const contract = new web3.eth.Contract(daiABI, daiAddress);
-console.log("🚀 | contract", contract);
+const daiContract = new web3.eth.Contract(daiABI, daiAddress);
 
-// TODO: Get DAI Balance smart contract call (balanceOf)
+const stakingABI = require("./WooshCore.json")["abi"];
+const stakingAddress = require("./WooshCore.json")["address"];
+const stakingContract = new web3.eth.Contract(stakingABI, stakingAddress);
+console.log("🚀 | stakingContract", stakingContract);
+
+// TODO: Get DAI Balance smart daiContract call (balanceOf)
 export const getBalanceOf = async (address) => {
-  const balance = await contract.methods.balanceOf(address).call();
+  const balance = await daiContract.methods.balanceOf(address).call();
   return balance;
 };
 
 // TODO: Setup Transfer Function for DAI (safeTransferFrom/transferFrom/transfer)
 export const transferDAI = async (to, amount) => {
-  await contract.methods.transfer(to, amount).call();
+  await daiContract.methods.transfer(to, amount).call();
+};
+
+// Approve max amount of DAI to stakingContract
+export const approveDAI = async () => {
+  await daiContract.methods
+    .approve(
+      stakingAddress,
+      "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    )
+    .call();
+};
+
+// TODO: Setup Transfer Function for DAI (safeTransferFrom/transferFrom/transfer)
+export const enableYield = async () => {
+  await daiContract.methods.startloanDAI().call();
+};
+
+// TODO: Setup Transfer Function for DAI (safeTransferFrom/transferFrom/transfer)
+export const disableYield = async () => {
+  await daiContract.methods.stopLoanDAI().call();
 };
 
 const sendTransaction = async () => {
