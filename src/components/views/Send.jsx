@@ -9,32 +9,29 @@ import TextLink from '../global/TextLink';
 import SelectContact from '../SelectContact';
 import ConfirmSend from '../ConfirmSend';
 import Confirmation from '../Confirmation';
-import { userContext } from "../../context/userContext";
-import {
-  transferDAI,
-} from "../../services/web3_methods";
+import { userContext } from '../../context/userContext';
+import { transferDAI } from '../../services/web3_methods';
 
 const Send = () => {
   const [step, setStep] = useState(1);
   const navigate = useNavigate();
-  const [amount, setAmount] = useLocalStorage("amount", 0)
-  const [recipient, setRecipient] = useLocalStorage("recipient", null)
-  const {account} = useContext(userContext)
+  const [amount, setAmount] = useLocalStorage('amount', 0);
+  const [recipient, setRecipient] = useLocalStorage('recipient', null);
+  const { account } = useContext(userContext);
 
   const executeTransaction = (event) => {
     event.preventDefault();
-    console.log("sending");
+    console.log('sending');
     console.log(amount, recipient, account);
     transferDAI(recipient, amount, account)
       .then((result) => {
-        console.log("TX amount: ", amount, "to: ", recipient);
+        console.log('TX amount: ', amount, 'to: ', recipient);
         console.log(result);
       })
       .catch((error) => {
         console.log(error);
       });
   };
-
 
   return (
     <>
@@ -51,10 +48,12 @@ const Send = () => {
           </div>
         </Header>
 
-        {step <= 1 && <MoneyInput setAmount={setAmount}/>}
-        {step === 2 && <SelectContact setRecipient={setRecipient} amount={amount}/>}
-        {step === 3 && <ConfirmSend amount={amount}/>}
-        {step === 4 && <Confirmation amount={amount} recipient={recipient}/>}
+        {step <= 1 && <MoneyInput setAmount={setAmount} />}
+        {step === 2 && (
+          <SelectContact setRecipient={setRecipient} amount={amount} />
+        )}
+        {step === 3 && <ConfirmSend amount={amount} />}
+        {step === 4 && <Confirmation amount={amount} recipient={recipient} />}
 
         <div
           className={`w-full flex ${
@@ -76,13 +75,12 @@ const Send = () => {
               if (step !== 4) {
                 setStep(step + 1);
               }
-              if (step ==4){
-                executeTransaction()
+              if (step === 4) {
+                executeTransaction();
               }
             }}
           >
-            <Button 
-            size={step === 4 ? 'lg' : 'md'}>
+            <Button size={step === 4 ? 'lg' : 'md'}>
               <div className="flex gap-2 justify-center">
                 <span className="leading-none">
                   {step === 3 ? 'Send' : 'Next'}

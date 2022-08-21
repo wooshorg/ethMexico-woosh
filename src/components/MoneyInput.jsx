@@ -3,22 +3,23 @@ import { useEffect, useState } from 'react';
 import { render } from '@testing-library/react';
 
 const MoneyInput = (props) => {
-  const {setAmount} = props;
+  const { setAmount } = props;
   const keyInputs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, ' . ', '<'];
-  const [userAmount, setUserAmount] = useState("")
+  const [userAmount, setUserAmount] = useState('0');
 
-  useEffect(()=> {
-    setAmount(userAmount)
-  }, [userAmount])
+  useEffect(() => {
+    setAmount(userAmount);
+  }, [userAmount]);
 
   const addSum = (char) => {
-    if(char == "<"){
-      setUserAmount(userAmount.slice(0, -1))
+    if (char == '<') {
+      setUserAmount(userAmount.slice(0, -1));
+    } else if (userAmount === '0') {
+      setUserAmount(char);
+    } else {
+      setUserAmount(userAmount.toString() + char);
     }
-    else{
-      setUserAmount(userAmount + char)
-    }
-  }
+  };
 
   return (
     <>
