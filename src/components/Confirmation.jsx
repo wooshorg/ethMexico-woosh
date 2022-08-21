@@ -1,4 +1,4 @@
-const Confirmation = (propsprops) => {
+const Confirmation = (props) => {
   const transactionData = {
     amount: props.amount,
     to: "user.lens",
