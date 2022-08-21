@@ -1,8 +1,7 @@
-import Logout from '../auth/Logout';
 import Header from '../layout/Header';
 import Navbar from '../layout/Navbar';
-import ProfileOverview from '../ProfileOverview';
-import Transactions from '../Transactions';
+import ProfileOverview from '../home/ProfileOverview';
+import Transactions from '../home/Transactions';
 const Home = () => {
   return (
     <>
