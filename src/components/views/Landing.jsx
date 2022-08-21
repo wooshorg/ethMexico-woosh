@@ -1,8 +1,6 @@
-import MagicLogin from "../auth/MagicLogin";
-import { userContext } from "../../context/userContext";
+import Button from '../global/Button';
 
 const Landing = () => {
-  const { account } = userContext;
   return (
     <>
       <div className="h-screen flex flex-col justify-end py-8 px-4">
@@ -21,7 +19,9 @@ const Landing = () => {
         </div>
         <div className="text-center">
           <p className="mb-2">Sign up now and receive 5 free credits!</p>
-          {!account && <MagicLogin />}
+          <Button size="lg" link="/login">
+            Get started
+          </Button>
         </div>
       </div>
     </>

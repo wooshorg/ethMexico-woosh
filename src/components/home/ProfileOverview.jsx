@@ -1,7 +1,7 @@
-import * as Switch from "@radix-ui/react-switch";
+import * as Switch from '@radix-ui/react-switch';
 
-import Button from "../global/Button";
-import { enableYield } from "../../services/web3_methods";
+import Button from '../global/Button';
+import { enableYield } from '../../services/web3_methods';
 
 const ProfileOverview = () => {
   return (
@@ -22,7 +22,7 @@ const ProfileOverview = () => {
             </div>
             <span>user.lens</span>
             <div className="flex items-center gap-2">
-              <span>Activate 7% yield</span>
+              <span>Earn 7% on your money</span>
               <div onClick={enableYield}>
                 <Switch.Root className="w-8 h-4 bg-[#C4C4C4] rounded-100vw relative radix-state-checked:bg-primary">
                   <Switch.Thumb className="block w-4 h-4 rounded-full bg-white radix-state-checked:translate-x-4 radix-state-unchecked:translate-x-0 transition duration-200" />

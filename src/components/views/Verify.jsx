@@ -1,12 +1,11 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect } from 'react';
 
-import Header from "../layout/Header";
-import { WorldIDWidget } from "@worldcoin/id";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { userContext } from "../../context/userContext";
-import TextLink from "../global/TextLink";
-import Button from "../global/Button";
+import Header from '../layout/Header';
+import { WorldIDWidget } from '@worldcoin/id';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { userContext } from '../../context/userContext';
+import TextLink from '../global/TextLink';
 
 const Verify = () => {
   const navigate = useNavigate();
@@ -35,18 +34,18 @@ const Verify = () => {
     //     .then(res =>{
     //         console.log(res.data)
     axios
-      .post("https://woosh-backend.herokuapp.com/user/bind", {
+      .post('https://woosh-backend.herokuapp.com/user/bind', {
         address: account,
         worldcoin_hash: verificationResponse.nullifier_hash,
       })
       .then((response) => {
         console.log(response);
         if (response.data.status == 200) {
-          navigate("/home");
+          navigate('/create-profile');
         }
       })
       .catch((error) => {
-        console.error("There was an error!", error);
+        console.error('There was an error!', error);
       });
   };
   // )
@@ -56,8 +55,7 @@ const Verify = () => {
   return (
     <>
       <div className="container">
-        
-        <Header/>
+        <Header />
 
         <div className="flex flex-col gap-3 mb-16 mt-[6.5rem] ">
           <p className="text-3xl">Verify that you're human</p>

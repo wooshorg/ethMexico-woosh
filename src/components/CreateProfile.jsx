@@ -2,11 +2,17 @@ import { useState, useEffect, useContext } from 'react';
 import { userContext } from '../context/userContext';
 import { createProfile } from '../lib/lens/createProfile';
 import { onFilePicked, uploadFile } from '../lib/fileManager';
+import Button from './global/Button';
+import { useNavigate } from 'react-router-dom';
+import Header from './layout/Header';
 
 const Profile = () => {
+  const navigate = useNavigate();
   const [handle, setHandle] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const { account } = useContext(userContext);
+
+  const suggestedUsernames = ['user1.lens', 'usera.lens', 'user0.lens'];
 
   const createLensProfile = async () => {
     if (handle === null) {
@@ -38,6 +44,7 @@ const Profile = () => {
     } else if (status === 'RelayerResult') {
       // TODO: redirect to success response
       console.log('Profile created successfully');
+      navigate('/home');
     }
   };
 
@@ -48,8 +55,13 @@ const Profile = () => {
 
   return (
     <>
-      <h1>Create profile</h1>
-
+      <div className="container">
+        <Header></Header>
+        <div className="flex flex-col gap-3 mb-16 mt-[3rem] ">
+          <p className="text-3xl">Choose a username</p>
+          <p>So people can easily find you!</p>
+        </div>
+        {/* 
       <input type="file" accept="image/*" onChange={onFilePicked} />
 
       <a
@@ -60,21 +72,37 @@ const Profile = () => {
       >
         Upload
       </a>
-      <br />
-      <span> Profile name </span>
-      <input
-        type="text"
-        id="profileHandle"
-        onChange={(event) => setHandle(event.target.value)}
-        name="profileHandle"
-        required
-        minLength="6"
-        maxLength="32"
-        size="10"
-      />
+      <br /> */}
 
-      <br />
-      <button onClick={createLensProfile}>Create profile</button>
+        <input
+          type="text"
+          id="profileHandle"
+          onChange={(event) => setHandle(event.target.value)}
+          name="profileHandle"
+          required
+          minLength="6"
+          maxLength="32"
+          size="10"
+          placeholder="@something.lens"
+          className="w-full rounded-100vw px-6 py-4 bg-white text-black focus:outline-none relative after:text-black after:absolute after:left-0 after:top-0 after:content-['@']"
+        />
+
+        <p className="mb-4 mt-20">Available usernames</p>
+        <div className="flex gap-3 mb-20">
+          {suggestedUsernames.map((u, i) => (
+            <div
+              className="text-dark bg-white py-2 px-6 rounded-100vw cursor-pointer hover:bg-primary transition-colors"
+              key={i}
+            >
+              {u}
+            </div>
+          ))}
+        </div>
+
+        <div onClick={createLensProfile}>
+          <Button size="lg">Next</Button>
+        </div>
+      </div>
     </>
   );
 };
