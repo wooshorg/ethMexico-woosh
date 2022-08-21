@@ -15,11 +15,12 @@ module.exports = {
     },
     container: {
       center: true,
+      padding: '1rem',
     },
     fontSize: {
       sm: [
         //12px
-        '1rem',
+        '0.75rem',
         {
           letterSpacing: '-0.01em',
           lineHeight: 1.2,
@@ -29,7 +30,7 @@ module.exports = {
       ],
       base: [
         //16px
-        '1.125rem',
+        '1rem',
         {
           lineHeight: 1.2,
           margin: 0,
