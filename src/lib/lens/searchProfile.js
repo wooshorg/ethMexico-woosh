@@ -106,6 +106,7 @@ const SEARCH = `
 `;
 
 const searchRequest = (handle) => {
+  console.log(">> searching: ", handle);
   return apolloClient.query({
     query: gql(SEARCH),
     variables: {

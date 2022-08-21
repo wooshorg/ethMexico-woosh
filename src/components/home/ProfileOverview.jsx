@@ -1,9 +1,37 @@
+import axios from 'axios';
+import { useState, useEffect, useContext } from 'react';
 import * as Switch from '@radix-ui/react-switch';
-
 import Button from '../global/Button';
 import { enableYield } from '../../services/web3_methods';
+import { userContext } from '../../context/userContext';
 
 const ProfileOverview = () => {
+  const [profile, setProfile] = useState({
+    handle: ''
+  });
+  const { account } = useContext(userContext);
+
+  const loadUserProfile = async () => {
+    axios
+      .get('https://woosh-backend.herokuapp.com/user/retrieve/'+account)
+      .then((response) => {
+        console.log(response);
+        if (response.status == 200) {
+          setProfile({
+            handle: response.data.username
+          });
+        }
+      })
+      .catch((error) => {
+        console.error('There was an error!', error);
+      });
+
+  };
+
+  useEffect(() => {
+    loadUserProfile();
+  }, []);
+
   return (
     <>
       <div className="flex flex-col gap-6 mt-6">
@@ -20,7 +48,7 @@ const ProfileOverview = () => {
                 <span className="text-primary leading-none mt-[-1px]">+</span>
               </div>
             </div>
-            <span>user.lens</span>
+            <span>{profile.handle}</span>
             <div className="flex items-center gap-2">
               <span>Earn 7% on your money</span>
               <div onClick={enableYield}>

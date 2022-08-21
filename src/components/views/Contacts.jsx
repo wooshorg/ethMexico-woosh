@@ -13,7 +13,7 @@ const Contacts = () => {
         </Header>
         <div className="flex justify-between items-center mt-12">
           <div className="flex flex-col">
-            <span>48</span>
+            <span></span>
             <h1 className="text-2xl leading-none">Contacts</h1>
           </div>
 

@@ -30,6 +30,7 @@ const AddContact = () => {
           profileId: item.profileId,
           handle: item.handle,
           isContact: item.isFollowedByMe,
+          wallet: item.ownedBy,
           picture:
             (item.picture &&
               item.picture.original &&
@@ -42,7 +43,7 @@ const AddContact = () => {
         });
 
         // TODO: replace by UI selection
-        selectContact(profiles[0].profileId);
+        //selectContact(profiles[0].profileId);
       });
     } else {
       setResults((t) => {
@@ -62,6 +63,10 @@ const AddContact = () => {
     await addContact(newContactId);
   };
 
+  const onInputName = async (event) => {
+    setHandle(event.target.value)
+  };
+
   return (
     <>
       <div className="container">
@@ -74,20 +79,14 @@ const AddContact = () => {
           </div>
         </div>
         <div className="pt-10 pb-8">
-          <Search />
+          <Search 
+            results={results}
+            onInputName={onInputName}
+            onSearchContact={lookForProfile}
+            onAddContact={addNewContact}
+          />
         </div>
       </div>
-
-      <input
-        type="text"
-        id="profileHandle"
-        onChange={(event) => setHandle(event.target.value)}
-        name="profileHandle"
-        required
-        minLength="6"
-        maxLength="32"
-        size="10"
-      />
 
       <button onClick={lookForProfile}>Search profile</button>
 

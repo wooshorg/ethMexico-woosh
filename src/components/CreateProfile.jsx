@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState, useEffect, useContext } from 'react';
 import { userContext } from '../context/userContext';
 import { createProfile } from '../lib/lens/createProfile';
@@ -42,9 +43,22 @@ const Profile = () => {
       // TODO: show error dialog
       return;
     } else if (status === 'RelayerResult') {
-      // TODO: redirect to success response
+      axios
+        .put('https://woosh-backend.herokuapp.com/user/edit/'+account, {
+          username: handle,
+          image_url: imageUrl,
+        })
+        .then((response) => {
+          console.log(response);
+          if (response.status == 200) {
+            navigate('/home');
+          }
+        })
+        .catch((error) => {
+          console.error('There was an error!', error);
+        });
+
       console.log('Profile created successfully');
-      navigate('/home');
     }
   };
 

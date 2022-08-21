@@ -10,11 +10,12 @@ const Transactions = () => {
   const { account } = useContext(userContext);
 
   const loadTransactions = async () => {
-    // if (account === null) {
-    //   return;
-    // }
+    if (account === null) {
+      return;
+    }
 
-    const myAddress = "0x41A6B19f3e9b0cB641965136aF8a774A85eA1FE2"; // TODO: get this from global stored data
+    //const myAddress = account;
+    const myAddress = "0x770d70Ad6694b16AfeFdb705fC4f9382A614fab7"; // TODO: get this from global stored data
     const api = polygonscan.init(
       process.env.POLYGONSCAN_API_KEY,
       "mumbai",
@@ -53,32 +54,6 @@ const Transactions = () => {
   };
 
   useEffect(() => {
-    // setTransactions([
-    //   {
-    //     user: "user.lens",
-    //     amount: 100,
-    //     date: "12 / 12 / 2022",
-    //     type: "in",
-    //   },
-    //   {
-    //     user: "user.lens",
-    //     amount: 1000,
-    //     date: "12 / 12 / 2022",
-    //     type: "out",
-    //   },
-    //   {
-    //     user: "user.lens",
-    //     amount: 1000,
-    //     date: "12 / 12 / 2022",
-    //     type: "in",
-    //   },
-    //   {
-    //     user: "user.lens",
-    //     amount: 1000,
-    //     date: "12 / 12 / 2022",
-    //     type: "in",
-    //   },
-    // ]);
     loadTransactions();
   }, []);
 
@@ -99,7 +74,7 @@ const Transactions = () => {
                 </div>
                 <div className="flex flex-col items-end">
                   <span className="text-md">
-                    {e.type === "in" ? "+" : "-"}${e.amount}
+                    {e.type === "In" ? "+" : "-"}${e.amount}
                   </span>
                 </div>
               </div>
