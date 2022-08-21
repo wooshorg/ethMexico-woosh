@@ -34,7 +34,7 @@ const createProfileRequest = (handle, profilePictureUri) => {
 };
 
 export const createProfile = async (handle, profilePictureUri) => {
-  const address = getAddressFromSigner();
+  const address = await getAddressFromSigner();
   console.log('create profile: address', address);
 
   await login(address);

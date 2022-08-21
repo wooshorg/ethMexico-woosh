@@ -1,8 +1,9 @@
 // import { ConnectExtension } from "@magic-ext/connect";
 import { Magic } from "magic-sdk";
+import { MUMBAI_RPC_URL } from '../config';
 
 const customNodeOptions = {
-  rpcUrl: "https://matic-mumbai.chainstacklabs.com", // Polygon RPC URL
+  rpcUrl: MUMBAI_RPC_URL, // Polygon RPC URL
   chainId: 80001, // Polygon chain id
 };
 

@@ -114,7 +114,7 @@ const getProfileRequest = (profileId, handle) => {
 };
 
 export const getProfile = async (profileId, handle) => {
-  const address = getAddressFromSigner();
+  const address = await getAddressFromSigner();
   console.log('profile from address', address);
 
   await login();
