@@ -14,7 +14,9 @@ const Transactions = () => {
     //   return;
     // }
 
-    const myAddress = "0x41A6B19f3e9b0cB641965136aF8a774A85eA1FE2"; // TODO: get this from global stored data
+    const myAddress = account
+      ? account
+      : "0x41A6B19f3e9b0cB641965136aF8a774A85eA1FE2"; // TODO: get this from global stored data
     const api = polygonscan.init(
       process.env.POLYGONSCAN_API_KEY,
       "mumbai",
@@ -38,6 +40,7 @@ const Transactions = () => {
 
       let data = {
         user: "user.lens", // TODO: Resolve from lens
+        from: tx.from,
         time: new Date(parseInt(tx.timeStamp * 1000)).toLocaleString("en-US"),
         amount: ethers.utils.formatUnits(tx.value, parseInt(tx.tokenDecimal)),
         tokenSymbol: tx.tokenSymbol,
@@ -93,7 +96,9 @@ const Transactions = () => {
                 <div className="flex items-center gap-2">
                   <div className="rounded-full bg-white h-10 w-10" />
                   <div className="flex flex-col">
-                    <span>{e.user}</span>
+                    <span>
+                      {e.user} {e.from}
+                    </span>
                     <span className="text-sm">{e.date}</span>
                   </div>
                 </div>
