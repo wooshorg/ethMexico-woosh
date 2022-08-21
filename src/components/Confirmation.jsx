@@ -1,7 +1,7 @@
 const Confirmation = (props) => {
   const transactionData = {
-    amount: 50,
-    user: 'temo.lens',
+    amount: props.amount,
+    to: 'user.lens',
     transcationAddress: '0x85hirf093',
     remainingCredits: 4,
   };
