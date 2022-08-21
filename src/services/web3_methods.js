@@ -1,6 +1,25 @@
-import web3 from "./web3";
+import { web3 } from "./web3";
 
-const daiContract = 
+// TODO: Setup DAI Contract
+
+// TODO: Get DAI ABI, DAI ADDRESS
+const daiABI = require("./DAI.json")["abi"];
+console.log("🚀 | daiABI", daiABI);
+const daiAddress = require("./DAI.json")["address"];
+console.log("🚀 | daiAddress", daiAddress);
+const contract = new web3.eth.Contract(daiABI, daiAddress);
+console.log("🚀 | contract", contract);
+
+// TODO: Get DAI Balance smart contract call (balanceOf)
+export const getBalanceOf = async (address) => {
+  const balance = await contract.methods.balanceOf(address).call();
+  return balance;
+};
+
+// TODO: Setup Transfer Function for DAI (safeTransferFrom/transferFrom/transfer)
+export const transferDAI = async (to, amount) => {
+  await contract.methods.transfer(to, amount).call();
+};
 
 const sendTransaction = async () => {
   const publicAddress = (await web3.eth.getAccounts())[0];
@@ -21,21 +40,4 @@ const sendTransaction = async () => {
     .catch((error) => {
       console.log(error);
     });
-};
-
-const sendDAI = async () => {
-
-
-const signMessage = async () => {
-  const publicAddress = (await web3.eth.getAccounts())[0];
-  const signedMessage = await web3.eth.personal
-    .sign("My Message", publicAddress, "")
-    .catch((e) => console.log(e));
-  console.log(signedMessage);
-};
-
-const showWallet = () => {
-  magic.connect.showWallet().catch((e) => {
-    console.log(e);
-  });
 };
