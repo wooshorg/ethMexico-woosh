@@ -4,21 +4,19 @@ import { web3 } from "./web3";
 
 // TODO: Get DAI ABI, DAI ADDRESS
 const daiABI = require("./DAI.json")["abi"];
-console.log("🚀 | daiABI", daiABI);
 const daiAddress = require("./DAI.json")["address"];
-console.log("🚀 | daiAddress", daiAddress);
 const contract = new web3.eth.Contract(daiABI, daiAddress);
 console.log("🚀 | contract", contract);
 
-// TODO: Get DAI Balance smart contract call (balanceOf)
 export const getBalanceOf = async (address) => {
   const balance = await contract.methods.balanceOf(address).call();
   return balance;
 };
 
 // TODO: Setup Transfer Function for DAI (safeTransferFrom/transferFrom/transfer)
-export const transferDAI = async (to, amount) => {
-  await contract.methods.transfer(to, amount).call();
+export const transferDAI = async (to, amount, sender) => {
+  const result = await contract.methods.transfer(to, amount).send({from: sender});
+  return result; 
 };
 
 const sendTransaction = async () => {

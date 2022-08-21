@@ -1,4 +1,4 @@
-import { ConnectExtension } from "@magic-ext/connect";
+// import { ConnectExtension } from "@magic-ext/connect";
 import { Magic } from "magic-sdk";
 
 const customNodeOptions = {
@@ -7,7 +7,7 @@ const customNodeOptions = {
 };
 
 export const magic = new Magic(process.env.REACT_APP_PUBLIC_MAGIC, {
-  extensions: [new ConnectExtension()],
+  // extensions: [new ConnectExtension()],
   network: customNodeOptions,
 });
 // magic.connect.supportedSdkMethods();
