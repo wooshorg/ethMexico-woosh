@@ -1,27 +1,37 @@
-import './App.css';
+import "./App.css";
 
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes } from "react-router-dom";
 
-import Home from './components/views/Home';
-import Landing from './components/views/Landing';
-import Login from './components/views/Login';
-import Request from './components/views/Request';
-import Send from './components/views/Send';
-import Verify from './components/views/Verify';
-import { useLocalStorage } from './components/hooks/UseLocalStorage';
-import { useState } from 'react';
-import { userContext } from './context/userContext';
-
-import Transactions from './components/home/Transactions';
-import CreateProfile from './components/CreateProfile';
-import AddContact from './components/addContact';
-import PayRequest from './components/views/PayRequest';
-import Contacts from './components/views/Contacts';
+import AddContact from "./components/addContact";
+import Contacts from "./components/views/Contacts";
+import CreateProfile from "./components/CreateProfile";
+import Home from "./components/views/Home";
+import Landing from "./components/views/Landing";
+import Login from "./components/views/Login";
+import PayRequest from "./components/views/PayRequest";
+import Request from "./components/views/Request";
+import Send from "./components/views/Send";
+import Transactions from "./components/home/Transactions";
+import Verify from "./components/views/Verify";
+import { useLocalStorage } from "./components/hooks/UseLocalStorage";
+import { useState } from "react";
+import { userContext } from "./context/userContext";
 
 function App() {
-  const [account, setAccount] = useLocalStorage('account', null);
-  const [isVerified, setIsVerisVerified] = useState(false);
-  const value = { account, setAccount, isVerified, setIsVerisVerified };
+  const [account, setAccount] = useLocalStorage("account", null);
+  const [balance, setBalance] = useLocalStorage("balance", 0);
+  const [creditsAvailable, setCreditsAvailable] = useLocalStorage(
+    "creditsAvailable",
+    0
+  );
+  const value = {
+    account,
+    setAccount,
+    balance,
+    setBalance,
+    creditsAvailable,
+    setCreditsAvailable,
+  };
 
   return (
     <userContext.Provider value={value}>

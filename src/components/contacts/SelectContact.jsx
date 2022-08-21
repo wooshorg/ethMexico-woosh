@@ -1,35 +1,36 @@
-import Search from './Search';
-import ContactList from './ContactList';
+import ContactList from "./ContactList";
+import Search from "./Search";
 
 const SelectContact = (props) => {
+  const { setRecipient, amount, request } = props;
   const topContacts = [
     {
-      user: 'user1.lens',
-      profilePic: 'none',
+      user: "user1.lens",
+      profilePic: "none",
     },
     {
-      user: 'user2.lens',
-      profilePic: 'none',
+      user: "user2.lens",
+      profilePic: "none",
     },
     {
-      user: 'user3.lens',
-      profilePic: 'none',
+      user: "user3.lens",
+      profilePic: "none",
     },
     {
-      user: 'user4.lens',
-      profilePic: 'none',
+      user: "user4.lens",
+      profilePic: "none",
     },
   ];
   return (
     <div>
       <div className="flex flex-col items-center mb-6">
-        <span>{props.request ? `You’re requesting` : 'You’re sending'}</span>
-        <span className="text-3xl font-normal">$50.00</span>
+        <span>{request ? `You’re requesting` : "You’re sending"}</span>
+        <span className="text-3xl font-normal">${amount}</span>
 
         <span className="text-xl font-normal">
           {props.request
             ? `Who are you requesting money from?`
-            : 'Who are you sending to?'}
+            : "Who are you sending to?"}
         </span>
       </div>
 

@@ -1,11 +1,11 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect } from "react";
 
-import Header from '../layout/Header';
-import { WorldIDWidget } from '@worldcoin/id';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { userContext } from '../../context/userContext';
-import TextLink from '../global/TextLink';
+import Header from "../layout/Header";
+import TextLink from "../global/TextLink";
+import { WorldIDWidget } from "@worldcoin/id";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { userContext } from "../../context/userContext";
 
 const Verify = () => {
   const navigate = useNavigate();
@@ -34,18 +34,18 @@ const Verify = () => {
     //     .then(res =>{
     //         console.log(res.data)
     axios
-      .post('https://woosh-backend.herokuapp.com/user/bind', {
+      .post("https://woosh-backend.herokuapp.com/user/bind", {
         address: account,
         worldcoin_hash: verificationResponse.nullifier_hash,
       })
       .then((response) => {
         console.log(response);
-        if (response.status == 200) {
+        if (response.status === 200) {
           navigate("/create-profile");
         }
       })
       .catch((error) => {
-        console.error('There was an error!', error);
+        console.error("There was an error!", error);
       });
   };
   // )

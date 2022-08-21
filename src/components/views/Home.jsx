@@ -1,9 +1,10 @@
-import Header from '../layout/Header';
-import Navbar from '../layout/Navbar';
-import ProfileOverview from '../home/ProfileOverview';
-import Transactions from '../home/Transactions';
+import Header from "../layout/Header";
+import Navbar from "../layout/Navbar";
+import ProfileOverview from "../home/ProfileOverview";
+import React from "react";
+import Receive from "../home/Receive";
+import Transactions from "../home/Transactions";
 
-import Receive from '../home/Receive';
 const Home = () => {
   return (
     <>
