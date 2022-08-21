@@ -2,8 +2,8 @@ import { useState, useEffect, useContext } from 'react';
 import { ethers } from 'ethers';
 import polygonscan from 'polygonscan-api';
 
-import { userContext } from '../context/userContext';
-import TextLink from './global/TextLink';
+import { userContext } from '../../context/userContext';
+import TextLink from '../global/TextLink';
 
 const Transactions = () => {
   const [transactions, setTransactions] = useState([]);
