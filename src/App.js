@@ -6,6 +6,7 @@ import Landing from './components/views/Landing';
 import Home from './components/views/Home';
 import Verify from './components/views/Verify';
 import Send from './components/views/Send';
+import Profile from './components/profile';
 
 function App() {
   const [account, setAccount] = useState(null);
@@ -20,6 +21,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/verify" element={<Verify />} />
           <Route path="/send" element={<Send />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </div>
     </userContext.Provider>
